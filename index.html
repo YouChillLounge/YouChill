@@ -366,18 +366,18 @@
             'https://cdn.pixabay.com/photo/2015/07/18/13/14/wine-850337_1280.jpg',
             'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/450491581_1747758016050318_4312975856628919929_n.jpg',
             'https://imagizer.imageshack.com/img922/4561/MXykp2.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/452085713_411837974593393_3721532553116309836_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/452525445_849632823770573_8033627533185374581_n%20(1).jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/368560411_667911204971084_942677916526248858_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/369222001_1003310134046751_864275447997357524_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/372983633_658062952953185_5233668615428530715_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/384334871_17878804880953261_1000924625055351254_n.jpg',
-		'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448120374_1642322163230670_4832738848555782083_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448339191_17912078501953261_7876319712310921887_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448524374_984421640003516_5887406258324668779_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/450344003_1031181648362895_2682798828715104919_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/450502311_1031160025017155_2333823188085864256_n.jpg',
-			'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/451402774_504856858721442_748620201360924445_n.jpg'
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/452085713_411837974593393_3721532553116309836_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/452525445_849632823770573_8033627533185374581_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/368560411_667911204971084_942677916526248858_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/369222001_1003310134046751_864275447997357524_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/372983633_658062952953185_5233668615428530715_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/384334871_17878804880953261_1000924625055351254_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448120374_1642322163230670_4832738848555782083_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448339191_17912078501953261_7876319712310921887_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448524374_984421640003516_5887406258324668779_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/450344003_1031181648362895_2682798828715104919_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/450502311_1031160025017155_2333823188085864256_n.jpg',
+            'https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/451402774_504856858721442_748620201360924445_n.jpg'
         ];
 
         function getRandomFont() {
@@ -403,16 +403,6 @@
         function getRandomImage() {
             const randomIndex = Math.floor(Math.random() * images.length);
             document.querySelector('.menu-screen').style.backgroundImage = `url(${images[randomIndex]})`;
-        }
-
-        function showMenu() {
-            const menuContent = document.getElementById('menu-content');
-            menuContent.innerHTML = '<iframe src="menu.pdf" width="100%" height="600px" title="Yiyecek Menüsü"></iframe>';
-            menuContent.style.display = 'block';
-        }
-
-        function openInstagram() {
-            window.open('https://www.instagram.com/youchilllounge', '_blank');
         }
 
         function getRandomPosition() {
