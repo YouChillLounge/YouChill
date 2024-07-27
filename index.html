@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Chill Lounge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1f1f1f, #282828);
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            transition: background-color 1s ease;
+        }
+
+        .gallery {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            position: absolute;
+            animation: slide-in 1s forwards;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .top-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        .bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .left {
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+
+        .right {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .top {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bottom {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .menu-options {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu-options button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-options button:hover {
+            background-color: #FFD700;
+        }
+
+        #menu-content {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .welcome-message {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 36px;
+            font-family: 'Ubuntu', sans-serif;
+            color: #FFD700;
+            opacity: 0;
+            animation: slide-down 2s forwards, fade-in 2s forwards;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes slide-down {
+            from {
+                transform: translateX(-50%) translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(50%);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .menu-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            position: relative;
+            opacity: 0;
+            animation: fade-in-menu 0.5s forwards;
+        }
+
+        @keyframes fade-in-menu {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .menu-screen a {
+            text-decoration: none;
+        }
+
+        .menu-screen button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 69, 0, 0.8);
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu-screen button:hover {
+            background: rgba(255, 69, 0, 1);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .menu-screen button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-title {
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        .contact-options {
+            display: none;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+            animation: slide-in-contact 0.5s forwards;
+        }
+
+        @keyframes slide-in-contact {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-options button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 69, 0, 0.8);
+            color: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-options button:hover {
+            background: rgba(255, 69, 0, 1);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-options button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-screen">
+        <div class="gallery">
+            <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_1280.jpg" alt="Yiyecek 1" class="top-left">
+            <img src="https://imagizer.imageshack.com/img922/3545/qr2wpz.jpg" alt="Yiyecek 2" class="top-right">
+            <img src="https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg" alt="Yiyecek 3" class="bottom-left">
+            <img src="https://cdn.pixabay.com/photo/2019/10/14/06/45/blue-berry-cheese-cake-4547988_1280.jpg" alt="Yiyecek 4" class="bottom-right">
+            <img src="https://cdn.pixabay.com/photo/2020/05/08/15/33/bottle-5146217_1280.jpg" alt="İçecek 1" class="left">
+            <img src="https://cdn.pixabay.com/photo/2016/11/21/13/04/alcoholic-beverages-1845295_1280.jpg" alt="İçecek 2" class="right">
+            <img src="https://cdn.pixabay.com/photo/2015/05/31/11/15/wine-791133_1280.jpg" alt="İçecek 3" class="top">
+            <img src="https://cdn.pixabay.com/photo/2015/07/18/13/14/wine-850337_1280.jpg" alt="İçecek 4" class="bottom">
+        </div>
+        <div class="welcome-message" id="welcome-message">
+            Welcome to You Chill Information Page.
+        </div>
+    </div>
+    <div class="menu-screen" id="menu-screen">
+        <h1 class="menu-title" id="menu-title"></h1>
+        <img src="https://imagizer.imageshack.com/img923/6909/n50N1A.jpg" alt="Logo" class="logo">
+        <a href="https://drive.google.com/file/d/124MqqZcqBPNd8a2jWCWFxDDYruT1d6Pr/view?usp=sharing" target="_blank">
+            <button>Menü</button>
+        </a>
+        <a href="https://www.instagram.com/youchilllounge" target="_blank">
+            <button>Instagram</button>
+        </a>
+        <button onclick="toggleContactOptions()">Contact</button>
+        <div class="contact-options" id="contact-options">
+            <button onclick="location.href='mailto:youchilllounge@gmail.com'">Email Us</button>
+            <button onclick="location.href='tel:+905325404222'">Call Us</button>
+            <button onclick="location.href='https://maps.app.goo.gl/PNgzidJay2KzaXfR9'">Find Us</button>
+            <button onclick="location.href='https://wa.me/905325404222?text=Hello'">WhatsApp</button>
+        </div>
+    </div>
+    <div id="menu-content">
+        <!-- Menü içeriği burada güncellenecek -->
+    </div>
+    <script>
+        const messages = [
+            "Welcome to You Chill Lounge Restaurant, where taste meets elegance.",
+            "Experience the finest dining at You Chill Lounge Restaurant, your destination for gourmet cuisine.",
+            "At You Chill Lounge Restaurant, we blend exceptional flavors with a relaxed atmosphere.",
+            "Indulge in our exquisite menu, carefully crafted by our world-class chefs.",
+            "Enjoy a cozy ambiance while savoring our signature dishes.",
+            "Our friendly staff is dedicated to providing you with an unforgettable dining experience.",
+            "Discover our diverse menu, featuring both local and international delicacies.",
+            "From appetizers to desserts, every dish at You Chill Lounge Restaurant is a masterpiece.",
+            "Try our chef's specials, which are sure to tantalize your taste buds.",
+            "Relax and unwind in our stylish lounge area, perfect for casual dining and socializing.",
+            "Our restaurant offers a serene environment, ideal for both intimate dinners and group gatherings.",
+            "You Chill Lounge Restaurant boasts a contemporary design, creating a chic and comfortable setting.",
+            "Celebrate your special occasions with us; we cater to events of all sizes.",
+            "Book your table in advance to ensure a seamless dining experience.",
+            "Join us for our themed nights, where we offer unique culinary experiences and entertainment.",
+            "Our mission is to provide exceptional food and unparalleled service to our guests.",
+            "We aim to be the top dining destination in the area, known for our quality and hospitality.",
+            "At You Chill Lounge Restaurant, we believe in creating memorable moments for every guest.",
+            "Delight in our elegant surroundings, paired perfectly with our exquisite menu offerings.",
+            "Savor the harmony of flavors and ambiance at You Chill Lounge Restaurant.",
+            "Let us elevate your dining experience with our meticulously prepared dishes.",
+            "Our culinary team takes pride in delivering a symphony of flavors in every bite.",
+            "Your dining pleasure is our top priority, from the moment you walk in until the last bite.",
+            "Experience the pinnacle of fine dining with our sophisticated cuisine and impeccable service.",
+            "At You Chill Lounge Restaurant, every meal is a celebration of taste and luxury.",
+            "We invite you to enjoy an evening of culinary excellence and exceptional service.",
+            "Our menu is a testament to the artistry and passion of our chefs.",
+            "You Chill Lounge Restaurant: where culinary dreams become a reality.",
+            "Step into a world of flavor and elegance at You Chill Lounge Restaurant.",
+            "Our attention to detail ensures a dining experience that is both luxurious and memorable."
+        ];
+
+        const fonts = [
+            'Ubuntu:wght@400;700',
+            'Roboto:wght@400;700',
+            'Lobster',
+            'Pacifico',
+            'Raleway:wght@400;700'
+        ];
+
+        const images = [
+            'https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_1280.jpg',
+            'https://cdn.pixabay.com/photo/2016/10/01/09/28/green-dragon-vegetable-1707089_1280.jpg',
+            'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
+            'https://cdn.pixabay.com/photo/2019/10/14/06/45/blue-berry-cheese-cake-4547988_1280.jpg',
+            'https://cdn.pixabay.com/photo/2020/05/08/15/33/bottle-5146217_1280.jpg',
+            'https://cdn.pixabay.com/photo/2016/11/21/13/04/alcoholic-beverages-1845295_1280.jpg',
+            'https://cdn.pixabay.com/photo/2015/05/31/11/15/wine-791133_1280.jpg',
+            'https://cdn.pixabay.com/photo/2015/07/18/13/14/wine-850337_1280.jpg',
+            'https://cdn.pixabay.com/photo/2020/06/19/15/28/pizza-5312297_1280.jpg',
+            'https://imagizer.imageshack.com/img922/4561/MXykp2.jpg'
+        ];
+
+        function getRandomFont() {
+            const randomIndex = Math.floor(Math.random() * fonts.length);
+            return fonts[randomIndex];
+        }
+
+        function applyRandomFont() {
+            const randomFont = getRandomFont();
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `https://fonts.googleapis.com/css2?family=${randomFont}&display=swap`;
+            document.head.appendChild(link);
+
+            document.getElementById('welcome-message').style.fontFamily = randomFont.split(':')[0];
+        }
+
+        function showRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById('menu-title').innerText = messages[randomIndex];
+        }
+
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            document.querySelector('.menu-screen').style.backgroundImage = `url(${images[randomIndex]})`;
+        }
+
+        function showMenu() {
+            const menuContent = document.getElementById('menu-content');
+            menuContent.innerHTML = '<iframe src="menu.pdf" width="100%" height="600px" title="Yiyecek Menüsü"></iframe>';
+            menuContent.style.display = 'block';
+        }
+
+        function openInstagram() {
+            window.open('https://www.instagram.com/youchilllounge', '_blank');
+        }
+
+        function getRandomPosition() {
+            const top = Math.floor(Math.random() * 80) + '%'; // 0% - 80%
+            const left = Math.floor(Math.random() * 80) + '%'; // 0% - 80%
+            return { top, left };
+        }
+
+        function getRandomColor() {
+            const colors = ['#FFD700', '#FF8C00', '#FF4500', '#FF6347', '#FF1493'];
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
+        function toggleContactOptions() {
+            const contactOptions = document.getElementById('contact-options');
+            if (contactOptions.style.display === 'flex') {
+                contactOptions.style.display = 'none';
+            } else {
+                contactOptions.style.display = 'flex';
+                contactOptions.style.animation = 'slide-in-contact 0.5s forwards';
+            }
+        }
+
+        window.onload = function() {
+            applyRandomFont();
+            showRandomMessage();
+            getRandomImage();
+
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach(img => {
+                const position = getRandomPosition();
+                img.style.top = position.top;
+                img.style.left = position.left;
+            });
+
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.style.color = getRandomColor();
+
+            setTimeout(() => {
+                document.querySelector('.welcome-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.welcome-screen').style.display = 'none';
+                    document.getElementById('menu-screen').style.display = 'flex';
+                }, 500); // Geçiş efekti süresi
+            }, 5000); // 5 saniye sonra açılış ekranını kapat ve menü ekranını göster
+        }
+    </script>
+</body>
+</html>
