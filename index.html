@@ -371,6 +371,7 @@
     <div id="menu-content">
         <!-- Menü içeriği burada güncellenecek -->
     </div>
+    <audio id="bell-sound" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-55166/zapsplat_bells_small_shop_door_bell_ring_burst_001_55166.mp3" preload="auto"></audio>
     <script>
         const messages = [
             "Welcome to You Chill Lounge Restaurant, where taste meets elegance.",
@@ -505,6 +506,7 @@
                 setTimeout(() => {
                     document.querySelector('.welcome-screen').style.display = 'none';
                     document.getElementById('menu-screen').style.display = 'flex';
+                    document.getElementById('bell-sound').play(); // Çan sesi oynatma
                 }, 500); // Geçiş efekti süresi
             }, 5000); // 5 saniye sonra açılış ekranını kapat ve menü ekranını göster
         }
