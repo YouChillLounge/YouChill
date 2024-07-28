@@ -148,6 +148,37 @@
             }
         }
 
+        .menu-screen.slide-in {
+            display: flex;
+            animation: slide-in-menu 1s forwards;
+        }
+
+        @keyframes slide-in-menu {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .gallery img.slide-out {
+            animation: slide-out 1s forwards;
+        }
+
+        @keyframes slide-out {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+        }
+
         .menu-screen a {
             text-decoration: none;
         }
@@ -291,7 +322,7 @@
 <body>
     <div class="welcome-screen">
         <div class="gallery">
-            <img src="https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_1280.jpg" alt="Yiyecek 1">
+            <img id="welcome-image" src="https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908_1280.jpg" alt="Yiyecek 1">
         </div>
         <div class="welcome-message" id="welcome-message">
             Welcome to You Chill Information Page.
@@ -407,12 +438,12 @@
             welcomeMessage.style.color = getRandomColor();
 
             setTimeout(() => {
-                document.querySelector('.welcome-screen').style.opacity = '0';
+                document.getElementById('welcome-image').classList.add('slide-out');
                 setTimeout(() => {
                     document.querySelector('.welcome-screen').style.display = 'none';
-                    document.getElementById('menu-screen').style.display = 'flex';
+                    document.getElementById('menu-screen').classList.add('slide-in');
                     document.getElementById('bell-sound').play(); // Çan sesi oynatma
-                }, 500); // Geçiş efekti süresi
+                }, 1000); // Geçiş efekti süresi
             }, 5000); // 5 saniye sonra açılış ekranını kapat ve menü ekranını göster
         }
 
