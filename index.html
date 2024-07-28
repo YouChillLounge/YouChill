@@ -346,8 +346,8 @@
     <div class="menu-screen" id="menu-screen">
         <h1 class="menu-title" id="menu-title"></h1>
         <img src="https://imagizer.imageshack.com/img923/6909/n50N1A.jpg" alt="Logo" class="logo">
-        <a href="https://youchilllounge.github.io/YouChill/docs/YOUCHILLMENU.pdf" target="_blank">
-            <button>Menu</button>
+        <a href="https://hcerit07.github.io/You-Chill/docs/YOU%20CHILL%20MENU.pdf" target="_blank">
+            <button id="menu-button">Menu</button>
         </a>
         <a href="https://www.instagram.com/youchilllounge" target="_blank">
             <button>Instagram</button>
@@ -371,7 +371,7 @@
     <div id="menu-content">
         <!-- Menü içeriği burada güncellenecek -->
     </div>
-    <audio id="bell-sound" src="https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-55166/zapsplat_bells_small_shop_door_bell_ring_burst_001_55166.mp3" preload="auto"></audio>
+    <audio id="bell-sound" src="https://github.com/YouChillLounge/YouChill/raw/main/effect/docs_zapsplat_bell_small_reception_desk_bell_single_ring_003_15125%20(2).mp3" preload="auto"></audio>
     <script>
         const messages = [
             "Welcome to You Chill Lounge Restaurant, where taste meets elegance.",
@@ -510,6 +510,10 @@
                 }, 500); // Geçiş efekti süresi
             }, 5000); // 5 saniye sonra açılış ekranını kapat ve menü ekranını göster
         }
+
+        document.getElementById('menu-button').addEventListener('click', function() {
+            document.getElementById('bell-sound').play();
+        });
     </script>
 </body>
 </html>
