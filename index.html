@@ -18,7 +18,7 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
-      background-color: rgba(240, 240, 240, 0.8); /* Arka plan üzerine hafif bir örtü */
+      background-color: rgba(240, 240, 240, 0.8);
       width: 100%;
     }
 
@@ -46,8 +46,8 @@
       flex-direction: column;
       padding: 20px;
       flex-grow: 1;
-      align-items: center; /* İçeriği yatay olarak ortala */
-      justify-content: center; /* İçeriği dikey olarak ortala */
+      align-items: center;
+      justify-content: center;
     }
 
     .profile {
@@ -62,7 +62,7 @@
       height: 150px;
       border-radius: 50%;
       transition: all 0.3s ease-in-out;
-      cursor: pointer; /* İşaretçinin el şeklinde görünmesi için */
+      cursor: pointer;
     }
 
     .profile h2 {
@@ -81,7 +81,7 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
-      align-items: center; /* Butonları ortalamak için */
+      align-items: center;
     }
 
     .button {
@@ -91,8 +91,8 @@
       background-color: #fff;
       font-size: 1.2rem;
       cursor: pointer;
-      width: 200px; /* Genişliği içeriğe göre ayarla */
-      display: inline-block; /* İçeriğe göre genişlik için */
+      width: 200px;
+      display: inline-block;
     }
 
     .footer {
@@ -145,16 +145,18 @@
     #rezervasyon-formu {
       display: none;
       padding: 20px;
-      background-color: transparent; /* Şeffaf arka plan */
+      background-color: transparent;
       box-shadow: 0 2px 4px rgba(163, 23, 23, 0.1);
       gap: 10px;
       flex-direction: column;
       text-align: center;
-      position: fixed; /* Pozisyonu sabitle */
-      top: 15%;
-      left: 42%;
-      transform: translate(-50%, -50%); /* Ortala */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       animation: slideUp 0.5s forwards;
+      width: 90%;
+      max-width: 400px;
     }
 
     #rezervasyon-formu.show {
@@ -166,32 +168,32 @@
     }
 
     #rezervasyon-formu form {
-      background-color: transparent; /* Formun arka planını tamamen şeffaf yap */
+      background-color: transparent;
     }
 
     #rezervasyon-formu input,
     #rezervasyon-formu button,
     #rezervasyon-formu textarea {
-      background-color: rgba(255, 255, 255, 0.8); /* Şeffaf input ve butonlar */
+      background-color: rgba(255, 255, 255, 0.8);
       border: 1px solid #ccc;
       padding: 10px;
       margin-bottom: 10px;
       border-radius: 5px;
       width: 100%;
-      box-sizing: border-box; /* Box-sizing ayarını ekledim */
+      box-sizing: border-box;
     }
 
     .profile.small {
       position: absolute;
-      top: 100px;
-      right: 20px;
-      width: 100px;
-      height: 100px;
+      top: 10px;
+      right: 10px;
+      width: 80px;
+      height: 80px;
     }
 
     .profile.small img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
     }
 
@@ -212,19 +214,19 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       animation: slideRight 0.5s forwards;
-      position: fixed; /* Pozisyonu sabitle */
+      position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%); /* Ortala */
+      transform: translate(-50%, -50%);
       color: rgb(163, 228, 13);
-      max-width: 90%; /* Genişliği sınırlamak için */
-      max-height: 80%; /* Yüksekliği sınırlamak için */
-      overflow: auto; /* İçerik sığmazsa kaydırma çubuğu ekle */
+      max-width: 90%;
+      max-height: 80%;
+      overflow: auto;
     }
 
     #about-us-content img {
       width: 100%;
-      max-width: 100%; /* Genişliği sınırlamak için */
+      max-width: 100%;
       height: auto;
       border-radius: 5px;
       margin-bottom: 15px;
@@ -236,6 +238,60 @@
 
     #about-us-content.hide {
       animation: slideLeft 0.5s forwards;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 10px;
+      }
+
+      .header h1 {
+        font-size: 1.2rem;
+      }
+
+      .header .menu-icon {
+        font-size: 1.5rem;
+      }
+
+      .content {
+        padding: 10px;
+      }
+
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .profile h2 {
+        font-size: 1.5rem;
+      }
+
+      .profile p {
+        font-size: 0.9rem;
+      }
+
+      .button {
+        font-size: 1rem;
+        padding: 10px;
+        width: 150px;
+      }
+
+      #about-us-content {
+        max-width: 90%;
+        max-height: 70%;
+      }
+
+      .profile.small {
+        width: 60px;
+        height: 60px;
+        top: 10px;
+        right: 10px;
+      }
+
+      .profile.small img {
+        width: 60px;
+        height: 60px;
+      }
     }
   </style>
 </head>
