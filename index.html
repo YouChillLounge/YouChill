@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>You Chill Lounge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       margin: 0;
@@ -34,6 +35,7 @@
     .header h1 {
       margin: 0;
       font-size: 1.5rem;
+      cursor: pointer;
     }
 
     .header .menu-icon {
@@ -151,8 +153,8 @@
       flex-direction: column;
       text-align: center;
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 5%;
+      left: 2%;
       transform: translate(-50%, -50%);
       animation: slideUp 0.5s forwards;
       width: 90%;
@@ -199,10 +201,48 @@
 
     .contact-buttons {
       display: none;
-      flex-direction: column;
+      flex-direction: row; /* Yan yana dizilmesi için */
       gap: 10px;
       align-items: center;
+      justify-content: center;
       margin-top: 20px;
+    }
+
+    .contact-buttons.show {
+      display: flex;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    .contact-buttons.hide {
+      animation: fadeOut 0.5s forwards;
+    }
+
+    .contact-buttons .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-buttons .button i {
+      margin-right: 10px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
     }
 
     #about-us-content {
@@ -215,8 +255,9 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       animation: slideRight 0.5s forwards;
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 15%;
+      left: 5%;
+      right: 5%;
       transform: translate(-50%, -50%);
       color: rgb(163, 228, 13);
       max-width: 90%;
@@ -228,8 +269,8 @@
       width: 100%;
       max-width: 100%;
       height: auto;
-      border-radius: 5px;
-      margin-bottom: 15px;
+      border-radius: 15px;
+      margin-bottom: 0px;
     }
 
     #about-us-content.show {
@@ -238,6 +279,22 @@
 
     #about-us-content.hide {
       animation: slideLeft 0.5s forwards;
+    }
+
+    #progress-bar-container {
+      display: none;
+      width: 100%;
+      background-color: #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    #progress-bar {
+      width: 0;
+      height: 10px;
+      background-color: #4caf50;
+      transition: width 2s;
     }
 
     @media (max-width: 768px) {
@@ -284,7 +341,7 @@
       .profile.small {
         width: 60px;
         height: 60px;
-        top: 10px;
+        top: 70px;
         right: 10px;
       }
 
@@ -298,7 +355,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>You Chill Lounge | Side </h1>
+      <a href="javascript:void(0);" onclick="goToHome()" style="text-decoration: none; color: inherit;"><h1>You Chill Lounge | Side</h1></a>
       <div class="menu-icon">&#9776;</div>
     </div>
     <div class="content">
@@ -314,9 +371,9 @@
         <button class="button" id="rezervasyon-button">Rezervasyon</button>
       </div>
       <div class="contact-buttons" id="contact-buttons">
-        <button class="button" onclick="location.href='https://wa.me/905325404222?text=Hello'">WhatsApp</button>
-        <button class="button" onclick="location.href='https://maps.app.goo.gl/TAB8UeZaNhGQqD25A'">Map</button>
-        <button class="button" onclick="location.href='mailto:your-email@example.com'">Mail</button>
+        <button class="button" onclick="location.href='https://wa.me/905325404222?text=Hello'"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        <button class="button" onclick="location.href='https://maps.app.goo.gl/TAB8UeZaNhGQqD25A'"><i class="fas fa-map-marker-alt"></i> Map</button>
+        <button class="button" onclick="location.href='mailto:info@youchilllounge.com'"><i class="fas fa-envelope"></i> Mail</button>
       </div>
       <div id="about-us-content" class="form-hidden">
         <img src="https://raw.githubusercontent.com/YouChillLounge/YouChill/main/logo/youchill.jpeg" alt="Hakkımızda Görseli">
@@ -342,6 +399,9 @@
           <textarea id="istekler" name="istekler" rows="4" placeholder="İsteğinizi ve arzunuzu belirtiniz"></textarea><br><br>
           <button type="submit" id="rezervasyon-gonder">Gönder</button>
         </form>
+        <div id="progress-bar-container">
+          <div id="progress-bar"></div>
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -352,7 +412,12 @@
         function goToHome() {
           document.getElementById("buttons").style.display = "flex";
           document.getElementById("buttons").style.flexDirection = "column";
-          document.getElementById("contact-buttons").style.display = "none";
+          document.getElementById("contact-buttons").classList.remove("show");
+          document.getElementById("contact-buttons").classList.add("hide");
+          setTimeout(function() {
+            document.getElementById("contact-buttons").style.display = "none";
+            document.getElementById("contact-buttons").classList.remove("hide");
+          }, 500);
           document.getElementById("about-us-content").classList.remove("show");
           document.getElementById("about-us-content").classList.add("hide");
           setTimeout(function() {
@@ -408,13 +473,25 @@
           document.getElementById("buttons").style.display = "none";
           // İletişim butonlarını göster
           document.getElementById("contact-buttons").style.display = "flex";
+          document.getElementById("contact-buttons").classList.add("show");
+          setTimeout(function() {
+            document.getElementById("contact-buttons").classList.add("show");
+          }, 10);
         });
 
         // Rezervasyon formunu kapatmak ve göndermek için form submit işlemi
         document.getElementById("rezervasyon-form").addEventListener("submit", function(event) {
           event.preventDefault(); // Formun varsayılan gönderimini engelle
-          alert('Rezervasyonunuz oluşturulmuştur!');
+          // Progress bar'ı göster
+          var progressBarContainer = document.getElementById("progress-bar-container");
+          var progressBar = document.getElementById("progress-bar");
+          progressBarContainer.style.display = "block";
+          progressBar.style.width = "0%";
           setTimeout(function() {
+            progressBar.style.width = "100%";
+          }, 10);
+          setTimeout(function() {
+            alert('Rezervasyonunuz oluşturulmuştur!');
             goToHome();
           }, 2000); // 2 saniye bekle ve ana sayfaya dön
         });
