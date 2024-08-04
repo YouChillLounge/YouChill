@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You Chill Lounge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-image: url('https://raw.githubusercontent.com/YouChillLounge/YouChill/main/image/448339191_17912078501953261_7876319712310921887_n.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: rgba(240, 240, 240, 0.8); /* Arka plan üzerine hafif bir örtü */
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .header .menu-icon {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      flex-grow: 1;
+      align-items: center; /* İçeriği yatay olarak ortala */
+      justify-content: center; /* İçeriği dikey olarak ortala */
+    }
+
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer; /* İşaretçinin el şeklinde görünmesi için */
+    }
+
+    .profile h2 {
+      margin-top: 10px;
+      font-size: 1.8rem;
+    }
+
+    .profile p {
+      margin-top: 5px;
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center; /* Butonları ortalamak için */
+    }
+
+    .button {
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 200px; /* Genişliği içeriğe göre ayarla */
+      display: inline-block; /* İçeriğe göre genişlik için */
+    }
+
+    .footer {
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
+
+    .footer p {
+      margin: 0;
+      text-align: center;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(100%);
+      }
+    }
+
+    @keyframes slideRight {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideLeft {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    #rezervasyon-formu {
+      display: none;
+      padding: 20px;
+      background-color: transparent; /* Şeffaf arka plan */
+      box-shadow: 0 2px 4px rgba(163, 23, 23, 0.1);
+      gap: 10px;
+      flex-direction: column;
+      text-align: center;
+      position: fixed; /* Pozisyonu sabitle */
+      top: 15%;
+      left: 42%;
+      transform: translate(-50%, -50%); /* Ortala */
+      animation: slideUp 0.5s forwards;
+    }
+
+    #rezervasyon-formu.show {
+      display: flex;
+    }
+
+    #rezervasyon-formu.hide {
+      animation: slideDown 0.5s forwards;
+    }
+
+    #rezervasyon-formu form {
+      background-color: transparent; /* Formun arka planını tamamen şeffaf yap */
+    }
+
+    #rezervasyon-formu input,
+    #rezervasyon-formu button,
+    #rezervasyon-formu textarea {
+      background-color: rgba(255, 255, 255, 0.8); /* Şeffaf input ve butonlar */
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box; /* Box-sizing ayarını ekledim */
+    }
+
+    .profile.small {
+      position: absolute;
+      top: 100px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .profile.small img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .contact-buttons {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    #about-us-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background-color: rgba(46, 32, 32, 0.8);
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      animation: slideRight 0.5s forwards;
+      position: fixed; /* Pozisyonu sabitle */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Ortala */
+      color: rgb(163, 228, 13);
+      max-width: 90%; /* Genişliği sınırlamak için */
+      max-height: 80%; /* Yüksekliği sınırlamak için */
+      overflow: auto; /* İçerik sığmazsa kaydırma çubuğu ekle */
+    }
+
+    #about-us-content img {
+      width: 100%;
+      max-width: 100%; /* Genişliği sınırlamak için */
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    #about-us-content.show {
+      display: flex;
+    }
+
+    #about-us-content.hide {
+      animation: slideLeft 0.5s forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>You Chill Lounge | Side </h1>
+      <div class="menu-icon">&#9776;</div>
+    </div>
+    <div class="content">
+      <div class="profile" id="profile">
+        <img src="https://raw.githubusercontent.com/YouChillLounge/YouChill/main/logo/logo.jpg" alt="Derin Akasya" onclick="goToHome()">
+        <h2 id="profile-title">"You Chill Lounge"</h2>
+        <p id="profile-description">Güzel vakitler geçirmeniz dileği ile.</p>
+      </div>
+      <div class="buttons" id="buttons">
+        <button class="button" id="about-us-button">About Us</button>
+        <button class="button" onclick="location.href='https://github.com/YouChillLounge/YouChill/raw/main/docs/YOUCHILLMENU.pdf'">Menu</button>
+        <button class="button" id="contact-button">Contact</button>
+        <button class="button" id="rezervasyon-button">Rezervasyon</button>
+      </div>
+      <div class="contact-buttons" id="contact-buttons">
+        <button class="button" onclick="location.href='https://wa.me/905325404222?text=Hello'">WhatsApp</button>
+        <button class="button" onclick="location.href='https://maps.app.goo.gl/TAB8UeZaNhGQqD25A'">Map</button>
+        <button class="button" onclick="location.href='mailto:your-email@example.com'">Mail</button>
+      </div>
+      <div id="about-us-content" class="form-hidden">
+        <img src="https://raw.githubusercontent.com/YouChillLounge/YouChill/main/logo/youchill.jpeg" alt="Hakkımızda Görseli">
+        <h2>Hakkımızda</h2>
+        <p>Side Antik Kenti'nin adının kökeni, nar ağaçlarına dayanır. Side, dağ tanrısının kızıdır. Tauros dağlarını temsil eden dağ tanrıçası olarak bilinir. Side, bir gün perileri ile Melas Irmağı'nın kıyısında gezinirken büyülü bir bölgeye gelir. Orada kızıl bir nar ağacından kopardığı çiçekten akan kanlar nar ağacına dönüşür. Kendi bedeni de bu ağacın içine hapsolur. Side, dönüşümü ile nar ağacının kızıl meyvelerini oluşturur.
+
+            Side'nin ruhuyla bütünleşmiş bu Antik Kent, hem tarihi, hem doğal güzellikleriyle ziyaretçilerini büyülemeye devam ediyor.</p>
+      </div>
+      <div id="rezervasyon-formu" class="form-hidden">
+        <h2>Rezervasyon Formu</h2>
+        <form id="rezervasyon-form">
+          <label for="isim">İsim:</label>
+          <input type="text" id="isim" name="isim"><br><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email"><br><br>
+          <label for="telefon">Telefon:</label>
+          <input type="text" id="telefon" name="telefon"><br><br>
+          <label for="tarih">Tarih:</label>
+          <input type="date" id="tarih" name="tarih"><br><br>
+          <label for="saat">Saat:</label>
+          <input type="time" id="saat" name="saat"><br><br>
+          <label for="istekler">Notlar:</label>
+          <textarea id="istekler" name="istekler" rows="4" placeholder="İsteğinizi ve arzunuzu belirtiniz"></textarea><br><br>
+          <button type="submit" id="rezervasyon-gonder">Gönder</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <p>&copy; You Chill Lounge</p>
+    </div>
+    <script>
+        // Ana sayfaya yönlendirme işlevi
+        function goToHome() {
+          document.getElementById("buttons").style.display = "flex";
+          document.getElementById("buttons").style.flexDirection = "column";
+          document.getElementById("contact-buttons").style.display = "none";
+          document.getElementById("about-us-content").classList.remove("show");
+          document.getElementById("about-us-content").classList.add("hide");
+          setTimeout(function() {
+            document.getElementById("about-us-content").style.display = "none";
+            document.getElementById("about-us-content").classList.remove("hide");
+          }, 500);
+          document.getElementById("profile-title").style.display = "block";
+          document.getElementById("profile-description").style.display = "block";
+          document.getElementById("profile").classList.remove("small");
+          document.getElementById("rezervasyon-formu").classList.remove("show");
+          document.getElementById("rezervasyon-formu").classList.add("hide");
+          setTimeout(function() {
+            document.getElementById("rezervasyon-formu").style.display = "none";
+            document.getElementById("rezervasyon-formu").classList.remove("hide");
+          }, 500);
+        }
+
+        // About Us içeriğini açmak için butona tıklandığında
+        document.getElementById("about-us-button").addEventListener("click", function() {
+          // Ana ekrandaki butonları gizle
+          document.getElementById("buttons").style.display = "none";
+          // Profil bölümündeki başlığı ve açıklamayı gizle
+          document.getElementById("profile-title").style.display = "none";
+          document.getElementById("profile-description").style.display = "none";
+          // Profil resmini sağ üst köşeye taşı
+          document.getElementById("profile").classList.add("small");
+          // About Us içeriğini göster
+          document.getElementById("about-us-content").style.display = "flex";
+          setTimeout(function() {
+            document.getElementById("about-us-content").classList.add("show");
+          }, 10);
+        });
+
+        // Rezervasyon formunu açmak için butona tıklandığında
+        document.getElementById("rezervasyon-button").addEventListener("click", function() {
+          // Ana ekrandaki butonları gizle
+          document.getElementById("buttons").style.display = "none";
+          // Profil bölümündeki başlığı ve açıklamayı gizle
+          document.getElementById("profile-title").style.display = "none";
+          document.getElementById("profile-description").style.display = "none";
+          // Profil resmini sağ üst köşeye taşı
+          document.getElementById("profile").classList.add("small");
+          // Rezervasyon formunu göster
+          document.getElementById("rezervasyon-formu").style.display = "flex";
+          setTimeout(function() {
+            document.getElementById("rezervasyon-formu").classList.add("show");
+          }, 10);
+        });
+
+        // İletişim butonunu açmak için butona tıklandığında
+        document.getElementById("contact-button").addEventListener("click", function() {
+          // Ana ekrandaki butonları gizle
+          document.getElementById("buttons").style.display = "none";
+          // İletişim butonlarını göster
+          document.getElementById("contact-buttons").style.display = "flex";
+        });
+
+        // Rezervasyon formunu kapatmak ve göndermek için form submit işlemi
+        document.getElementById("rezervasyon-form").addEventListener("submit", function(event) {
+          event.preventDefault(); // Formun varsayılan gönderimini engelle
+          alert('Rezervasyonunuz oluşturulmuştur!');
+          setTimeout(function() {
+            goToHome();
+          }, 2000); // 2 saniye bekle ve ana sayfaya dön
+        });
+    </script>
+  </div>
+</body>
+</html>
